@@ -58,18 +58,15 @@ void loop()
 }
 
 void displayValue(float value){
-  for(int j; j<99; j++){
+  for(int j; j<33; j++){
     writeDigitToPosition((int)(value/10), false, 2);
-    delay(1);
     writeDigitToPosition((int)value, true, 1);
-    delay(1);
     writeDigitToPosition((int)(value*10), false, 0);
-    delay(1); 
   }
 }
 
 
-void writeDigitToPosition(int digit, boolean dp, int pos){
+void writeDigitToPosition(int value, boolean dp, int pos){
    digitalWrite(pinDigit0, HIGH);
    digitalWrite(pinDigit1, HIGH);
    digitalWrite(pinDigit2, HIGH);
@@ -84,12 +81,12 @@ void writeDigitToPosition(int digit, boolean dp, int pos){
            digitalWrite(pinDigit2, LOW);
            break;
    } 
-   writeDigit(digit, dp);
+   writeDigit(value, dp);
 }
 
-void writeDigit(int digit, boolean dp){
-  digit = digit % 10;
-  switch(digit){
+void writeDigit(int value, boolean dp){
+  int ones = value % 10;
+  switch(ones){
       case 0: 
         digitalWrite(pinA, HIGH);
         digitalWrite(pinB, HIGH);
