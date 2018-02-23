@@ -24,14 +24,7 @@ void setup() {
   digitalWrite(pinDigit1, HIGH);
   digitalWrite(pinDigit2, HIGH);
   
-  digitalWrite(pinA, LOW);
-  digitalWrite(pinB, LOW);
-  digitalWrite(pinC, LOW);
-  digitalWrite(pinD, LOW);
-  digitalWrite(pinE, LOW);
-  digitalWrite(pinF, LOW);
-  digitalWrite(pinG, LOW);
-  digitalWrite(pinDP, LOW);
+  PORTD = 0;
 }
 
 void loop()
