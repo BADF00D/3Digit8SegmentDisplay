@@ -1,15 +1,30 @@
-const int pinA = 1;
-const int pinB = 2;
-const int pinC = 5;
-const int pinD = 6;
-const int pinE = 7;
-const int pinF = 3;
-const int pinG = 4;
+//expect the following segment to pin mapping
+//const int pinA = 1;
+//const int pinB = 2;
+//const int pinC = 5;
+//const int pinD = 6;
+//const int pinE = 7;
+//const int pinF = 3;
+//const int pinG = 4;
 const int pinDP = 0;
 
-const int pinDigit0 = 8;
-const int pinDigit1 = 9;
-const int pinDigit2 = 10;
+const int pinDigit0 = 9;
+const int pinDigit1 = 10;
+const int pinDigit2 = 11;
+
+byte digits[] = {
+  0b11101110,
+  0b00100100,
+  0b11010110,
+  0b01110110,
+  0b00111100,
+  0b01111010,
+  0b11111010,
+  0b11111010,
+  0b11111110,
+  0b01111110,
+  0b00010000   
+};
 
 void setup() {
   DDRD = 0xFF; //Set D0 up to D7 as Output
@@ -42,7 +57,6 @@ void displayValue(float value){
   writeDigitToPosition((int)(value*10), false, 0);
 }
 
-
 void writeDigitToPosition(int value, boolean dp, int pos){
    digitalWrite(pinDigit0, HIGH);
    digitalWrite(pinDigit1, HIGH);
@@ -62,19 +76,6 @@ void writeDigitToPosition(int value, boolean dp, int pos){
    delay(10);
 }
 
-byte digits[] = {
-  0b11101110,
-  0b00100100,
-  0b11010110,
-  0b01110110,
-  0b00111100,
-  0b01111010,
-  0b11111010,
-  0b11111010,
-  0b11111110,
-  0b01111110,
-  0b00010000   
-};
 void writeDigit(int value, boolean dp){
   PORTD = digits[value%10];
   if(dp){
