@@ -12,15 +12,7 @@ const int pinDigit1 = 9;
 const int pinDigit2 = 10;
 
 void setup() {
-  // set the digital pin as output:
-  pinMode(pinA, OUTPUT); 
-  pinMode(pinB, OUTPUT);
-  pinMode(pinC, OUTPUT);
-  pinMode(pinD, OUTPUT);
-  pinMode(pinE, OUTPUT);
-  pinMode(pinF, OUTPUT);
-  pinMode(pinG, OUTPUT);
-  pinMode(pinDP, OUTPUT);
+  DDRD = 0xFF; //Set D0 up to D7 as Output
   
   pinMode(pinDigit0, OUTPUT);
   pinMode(pinDigit1, OUTPUT);
@@ -46,23 +38,15 @@ void loop()
 {
   digitalWrite(13, LOW);
   float increment = 0.1;
-  for(int x=0; x<999; x++){
+  for(int x=0; x<1000; x++){
     displayValue(increment*x);
   }
-  digitalWrite(13, HIGH);
-  delay(1000);
-  digitalWrite(13, LOW);
-  delay(1000);
-  digitalWrite(13, HIGH);
-  delay(1000);
 }
 
 void displayValue(float value){
-  for(int j; j<33; j++){
-    writeDigitToPosition((int)(value/10), false, 2);
-    writeDigitToPosition((int)value, true, 1);
-    writeDigitToPosition((int)(value*10), false, 0);
-  }
+  writeDigitToPosition((int)(value/10), false, 2);
+  writeDigitToPosition((int)value, true, 1);
+  writeDigitToPosition((int)(value*10), false, 0);
 }
 
 
@@ -82,6 +66,7 @@ void writeDigitToPosition(int value, boolean dp, int pos){
            break;
    } 
    writeDigit(value, dp);
+   delay(10);
 }
 
 void writeDigit(int value, boolean dp){
